@@ -27,7 +27,7 @@ line_bot_api = LineBotApi('pGgY+7o+KHhCxmQvMt8EFk6JDp+ynVH4x30OlPH+htI2wj3ACCL+r
 # 必須放上自己的Channel Secret
 handler = WebhookHandler('a858b6490ab19aece43c10f4b775bdf2')
 
-line_bot_api.push_message('Ue8e85ddfa7ca3ba12ace6b481ce59d3a', TextSendMessage(text='請輸入一個單字eg：cattle'))
+#line_bot_api.push_message('Ue8e85ddfa7ca3ba12ace6b481ce59d3a', TextSendMessage(text='請輸入一個單字eg：cattle'))
 
 # 監聽所有來自 /callback 的 Post Request
 @app.route("/callback", methods=['POST'])
@@ -53,17 +53,17 @@ def callback():
 #line_bot_api.reply_message(event.reply_token,message)
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
-    try:  
-        with open('diction6700.json',mode='r+',encoding='UTF-8') as file:
-            data=json.load(file)
-            word=event.message.text
-            word=word.lower().strip()
-            defi=data[word][0]
-            message = TextSendMessage(text=(event.message.text+'的定義是：\n'+defi))
+        try:  
+            with open('diction6700.json',mode='r+',encoding='UTF-8') as file:
+                data=json.load(file)
+                word=event.message.text
+                word=word.lower().strip()
+                defi=data[word][0]
+                message = TextSendMessage(text=(event.message.text+'的定義是：\n'+defi))
+                line_bot_api.reply_message(event.reply_token,message)
+        except Exception:
+            message = TextSendMessage(text=(event.message.text+'的搜尋有誤，請嘗試：\n1.輸入7000單有的單字\n2.稍等一下再嘗試'))
             line_bot_api.reply_message(event.reply_token,message)
-    except Exception:
-        message = TextSendMessage(text=(event.message.text+'的搜尋有誤，請嘗試：\n1.輸入7000單有的單字\n2.稍等一下再嘗試'))
-        line_bot_api.reply_message(event.reply_token,message)
 
 
 #主程式
