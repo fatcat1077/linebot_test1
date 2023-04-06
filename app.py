@@ -58,12 +58,12 @@ def handle_message(event):
         word=word.lower().strip()
         if re.match('我需要一點迷因',word):
             imagemap_message = ImagemapSendMessage(
-                base_url='https://i.imgur.com/OWJD7B1.png',#組圖
+                base_url='https://i.imgur.com/BEVVwIJ.png',#組圖
                 alt_text='this is an imagemap',#預設
                 base_size=BaseSize(height=1040, width=1040),
                 video=Video(
-                    original_content_url='https://www.youtube.com/watch?v=-cZ7ndjhhps',#John Cena!!!
-                    preview_image_url='https://imgur.com/SVhJU6w.jpg',#預設
+                    original_content_url='file:///C:/Users/user/Downloads/John%20Cena%20Theme%20Song%20New%20Titantron%202012%20(Green%20Version).mp4',#John Cena!!!
+                    preview_image_url='https://i.imgur.com/BEVVwIJ.png',#組圖
                     area=ImagemapArea(
                         x=0, y=0, width=1040, height=585
                     ),
