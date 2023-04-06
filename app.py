@@ -57,59 +57,93 @@ def handle_message(event):
         word=event.message.text
         word=word.lower().strip()
         if re.match('我需要一點迷因',word):
-            carousel_template_message = TemplateSendMessage(
-            alt_text='免費教學影片',
-            template=CarouselTemplate(
-                columns=[
-                    CarouselColumn(
-                        thumbnail_image_url='https://i.imgur.com/WrJSu4t.png',#rick
-                        title='迷之搖擺',
-                        text='越搖越嗨',
-                        actions=[
-                            URIAction(
-                                label='馬上查看',
-                                uri='https://www.youtube.com/watch?v=dQw4w9WgXcQ'
-                            )
-                            URIAction(
-                                label='我真的超級想看',
-                                uri='https://www.youtube.com/watch?v=dQw4w9WgXcQ'
-                            )
-                        ]
+            imagemap_message = ImagemapSendMessage(
+                base_url='https://i.imgur.com/BEVVwIJ.png',#組圖
+                alt_text='this is an imagemap',#預設
+                base_size=BaseSize(height=1040, width=1040),
+                video=Video(
+                    original_content_url='https://i.imgur.com/1Y5IgRm.mp4',#John Cena!!!
+                    preview_image_url='https://i.imgur.com/BEVVwIJ.png',#組圖
+                    area=ImagemapArea(
+                        x=0, y=0, width=1040, height=585
                     ),
-                    CarouselColumn(
-                        thumbnail_image_url='https://i.imgur.com/hxTe31b.png',#土撥鼠
-                        title='ㄚㄚㄚ!',
-                        text='我受不鳥拉ㄚㄚㄚ啊!!!!!!!!',
-                        actions=[
-                            URIAction(
-                                label='馬上查看',
-                                uri='https://www.youtube.com/watch?v=C5zTO4nhXl4'
-                            )
-                            URIAction(
-                                label='我真的超級想看',
-                                uri='https://www.youtube.com/watch?v=C5zTO4nhXl4'
-                            )
-                        ]
+                    external_link=ExternalLink(# 影片結束後的連結
+                        link_uri='https://www.youtube.com/watch?v=_L9kvyVMR0M',
+                        label='More about John Cena',
                     ),
-                    CarouselColumn(
-                        thumbnail_image_url='https://i.imgur.com/UShDjCV.jpg',#John_cena
-                        title='John Cena',
-                        text='登登登登~登登登登~',
-                        actions=[
-                            URIAction(
-                                label='馬上查看',
-                                uri='https://www.youtube.com/watch?v=-cZ7ndjhhps'
-                            )
-                            URIAction(
-                                label='我真的超級想看',
-                                uri='https://www.youtube.com/watch?v=-cZ7ndjhhps'
-                            )
-                        ]
+                ),
+                actions=[
+                    URIImagemapAction(# 超連結
+                        link_uri='https://www.youtube.com/watch?v=dQw4w9WgXcQ',
+                        area=ImagemapArea(
+                            x=0, y=585, width=520, height=455
+                        )
+                    ),
+                    URIImagemapAction(# 超連結
+                        link_uri='https://www.youtube.com/watch?v=C5zTO4nhXl4',
+                        area=ImagemapArea(
+                            x=520, y=585, width=520, height=455
+                        )
                     )
                 ]
             )
-        )
-            line_bot_api.reply_message(event.reply_token, carousel_template_message)
+            line_bot_api.reply_message(event.reply_token, imagemap_message)
+        # word=event.message.text
+        # word=word.lower().strip()
+        # if re.match('我需要一點迷因',word):
+        #     carousel_template_message = TemplateSendMessage(
+        #     alt_text='免費教學影片',
+        #     template=CarouselTemplate(
+        #         columns=[
+        #             CarouselColumn(
+        #                 thumbnail_image_url='https://i.imgur.com/WrJSu4t.png',#rick
+        #                 title='迷之搖擺',
+        #                 text='越搖越嗨',
+        #                 actions=[
+        #                     URIAction(
+        #                         label='馬上查看',
+        #                         uri='https://www.youtube.com/watch?v=dQw4w9WgXcQ'
+        #                     )
+        #                     URIAction(
+        #                         label='我真的超級想看',
+        #                         uri='https://www.youtube.com/watch?v=dQw4w9WgXcQ'
+        #                     )
+        #                 ]
+        #             ),
+        #             CarouselColumn(
+        #                 thumbnail_image_url='https://i.imgur.com/hxTe31b.png',#土撥鼠
+        #                 title='ㄚㄚㄚ!',
+        #                 text='我受不鳥拉ㄚㄚㄚ啊!!!!!!!!',
+        #                 actions=[
+        #                     URIAction(
+        #                         label='馬上查看',
+        #                         uri='https://www.youtube.com/watch?v=C5zTO4nhXl4'
+        #                     )
+        #                     URIAction(
+        #                         label='我真的超級想看',
+        #                         uri='https://www.youtube.com/watch?v=C5zTO4nhXl4'
+        #                     )
+        #                 ]
+        #             ),
+        #             CarouselColumn(
+        #                 thumbnail_image_url='https://i.imgur.com/UShDjCV.jpg',#John_cena
+        #                 title='John Cena',
+        #                 text='登登登登~登登登登~',
+        #                 actions=[
+        #                     URIAction(
+        #                         label='馬上查看',
+        #                         uri='https://www.youtube.com/watch?v=-cZ7ndjhhps'
+        #                     )
+        #                     URIAction(
+        #                         label='我真的超級想看',
+        #                         uri='https://www.youtube.com/watch?v=-cZ7ndjhhps'
+        #                     )
+        #                 ]
+        #             )
+        #         ]
+        #     )
+        # )
+        #     line_bot_api.reply_message(event.reply_token, carousel_template_message)
         else:
             try:  
                 with open('diction6700.json',mode='r+',encoding='UTF-8') as file:
