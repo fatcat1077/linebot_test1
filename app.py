@@ -62,7 +62,7 @@ def handle_message(event):
                 alt_text='this is an imagemap',#預設
                 base_size=BaseSize(height=1040, width=1040),
                 video=Video(
-                    original_content_url='https://streamable.com/3xio6u',#John Cena!!!
+                    original_content_url='https://www.facebook.com/100005177850469/videos/8993609677347239',#John Cena!!!
                     preview_image_url='https://i.imgur.com/BEVVwIJ.png',#組圖
                     area=ImagemapArea(
                         x=0, y=0, width=1040, height=585
