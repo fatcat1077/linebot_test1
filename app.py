@@ -76,13 +76,13 @@ def handle_message(event):
                     URIImagemapAction(# 超連結
                         link_uri='https://www.youtube.com/watch?v=dQw4w9WgXcQ',
                         area=ImagemapArea(
-                            x=0, y=0, width=520, height=1040
+                            x=0, y=585, width=520, height=455
                         )
                     ),
                     URIImagemapAction(# 超連結
                         link_uri='https://www.youtube.com/watch?v=C5zTO4nhXl4',
                         area=ImagemapArea(
-                            x=520, y=0, width=520, height=1040
+                            x=520, y=585, width=520, height=455
                         )
                     )
                 ]
