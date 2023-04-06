@@ -57,27 +57,47 @@ def handle_message(event):
         word=event.message.text
         word=word.lower().strip()
         if re.match('我需要一點迷因',word):
-            @handler.add(MessageEvent, message=TextMessage)
-def handle_message(event):
-    message = text=event.message.text
-    if re.match('告訴我秘密',message):
-        video_message = VideoSendMessage(
-            original_content_url='https://i.imgur.com/1Y5IgRm.mp4',
-            preview_image_url='https://i.imgur.com/wpM584d.jpg'
-        )
-        line_bot_api.reply_message(event.reply_token, video_message)
-    
-        line_bot_api.reply_message(event.reply_token, TextSendMessage(message))
-    else:
-        try:  
-            with open('diction6700.json',mode='r+',encoding='UTF-8') as file:
-                data=json.load(file)
-                defi=data[word][0]
-                message = TextSendMessage(text=(event.message.text+'的定義是：\n'+defi))
+            imagemap_message = ImagemapSendMessage(
+                base_url='https://i.imgur.com/BEVVwIJ.png',#組圖
+                alt_text='this is an imagemap',#預設
+                base_size=BaseSize(height=1040, width=1040),
+                video=Video(
+                    original_content_url='https://i.imgur.com/1Y5IgRm.mp4',#John Cena!!!
+                    preview_image_url='https://i.imgur.com/BEVVwIJ.png',#組圖
+                    area=ImagemapArea(
+                        x=0, y=0, width=1040, height=585
+                    ),
+                    external_link=ExternalLink(# 影片結束後的連結
+                        link_uri='https://www.youtube.com/watch?v=_L9kvyVMR0M',
+                        label='More about John Cena',
+                    ),
+                ),
+                actions=[
+                    URIImagemapAction(# 超連結
+                        link_uri='https://www.youtube.com/watch?v=dQw4w9WgXcQ',
+                        area=ImagemapArea(
+                            x=0, y=0, width=520, height=1040
+                        )
+                    ),
+                    URIImagemapAction(# 超連結
+                        link_uri='https://www.youtube.com/watch?v=C5zTO4nhXl4',
+                        area=ImagemapArea(
+                            x=520, y=0, width=520, height=1040
+                        )
+                    )
+                ]
+            )
+            line_bot_api.reply_message(event.reply_token, imagemap_message)
+        else:
+            try:  
+                with open('diction6700.json',mode='r+',encoding='UTF-8') as file:
+                    data=json.load(file)
+                    defi=data[word][0]
+                    message = TextSendMessage(text=(event.message.text+'的定義是：\n'+defi))
+                    line_bot_api.reply_message(event.reply_token,message)
+            except Exception:
+                message = TextSendMessage(text=(event.message.text+'的搜尋有誤，請嘗試：\n1.輸入7000單有的單字\n2.稍等一下再嘗試\n3.我需要一點迷因'))
                 line_bot_api.reply_message(event.reply_token,message)
-        except Exception:
-            message = TextSendMessage(text=(event.message.text+'的搜尋有誤，請嘗試：\n1.輸入7000單有的單字\n2.稍等一下再嘗試\n3.我需要一點迷因'))
-            line_bot_api.reply_message(event.reply_token,message)
 
 
 #主程式
