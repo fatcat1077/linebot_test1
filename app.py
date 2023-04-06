@@ -62,7 +62,7 @@ def handle_message(event):
                 alt_text='this is an imagemap',#預設
                 base_size=BaseSize(height=1040, width=1040),
                 video=Video(
-                    original_content_url='https://video-private-assets.canva.com/VAFfUsmj5lw/v/37186631ba.mp4?exp=1680866400000&cf-ck=cW9pjob0cgb9oWEh1608T7CQv5GwgNLsl5tMjRfl1IM&cf-sig=iwvryuO2acb5qkyvpauclVT0eu-wVi2yZ0N7jSY30TE&cf-sig-kid=CO7cCjZ_YiI=&sig=zUcOpehCZPnG5cQ0GxJq-fc5NAVgzoqaUS3lxuWChJI&sig-kid=GzFgFdhXD-Q=',#John Cena!!!
+                    original_content_url='https://i.imgur.com/1Y5IgRm.mp4',#John Cena!!!
                     preview_image_url='https://i.imgur.com/BEVVwIJ.png',#組圖
                     area=ImagemapArea(
                         x=0, y=0, width=1040, height=585
