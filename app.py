@@ -52,13 +52,12 @@ def callback():
 ##### 基本上程式編輯都在這個function #####
 #message = TextSendMessage(text=event.message.text)
 #line_bot_api.reply_message(event.reply_token,message)
-@handler.add(MessageEvent, message=TextMessage)#這又是啥裝飾器啊?
+@handler.add(MessageEvent, message=TextMessage)#這在幹嘛我懂，但前面沒有定義MessageEvent阿
 def handle_message(event):
         word=event.message.text
         word=word.lower().strip()
         if re.match('我需要一點迷因',word):
             imagemap_message = ImagemapSendMessage(
-                https://i.imgur.com/UShDjCV.jpg
                 base_url='https://i.imgur.com/ZoLFq9S.png',#組圖
                 alt_text='this is an imagemap',#預設
                 base_size=BaseSize(height=1040, width=1040),
