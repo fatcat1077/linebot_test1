@@ -58,7 +58,7 @@ def handle_message(event):
         word=word.lower().strip()
         if re.match('我需要一點迷因',word):
             imagemap_message = ImagemapSendMessage(
-                base_url='https://i.imgur.com/ZoLFq9S.png',#組圖
+                base_url='https://i.imgur.com/UShDjCV.jpg',#John
                 alt_text='this is an imagemap',#預設
                 base_size=BaseSize(height=1040, width=1040),
                 video=Video(
