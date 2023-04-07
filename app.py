@@ -12,14 +12,14 @@ Line Bot機器人串接與測試
 #載入LineBot所需要的套件
 from flask import Flask, request, abort
 import json
-from linebot import (
+from linebot import (#我要知道這套件在做啥嗎?
     LineBotApi, WebhookHandler
 )
-from linebot.exceptions import (
+from linebot.exceptions import (#我要知道這套件在做啥嗎?
     InvalidSignatureError
 )
-from linebot.models import *
-import re
+from linebot.models import *#??這蝦小
+import re#??這又是蝦小
 
 app = Flask(__name__)
 
@@ -31,10 +31,10 @@ handler = WebhookHandler('a858b6490ab19aece43c10f4b775bdf2')
 #line_bot_api.push_message('Ue8e85ddfa7ca3ba12ace6b481ce59d3a', TextSendMessage(text='請輸入一個單字eg：cattle'))
 
 # 監聽所有來自 /callback 的 Post Request
-@app.route("/callback", methods=['POST'])
+@app.route("/callback", methods=['POST'])#flask 套件裡面的嗎?
 def callback():
     # get X-Line-Signature header value
-    signature = request.headers['X-Line-Signature']
+    signature = request.headers['X-Line-Signature']#我不懂
 
     # get request body as text
     body = request.get_data(as_text=True)
@@ -58,12 +58,12 @@ def handle_message(event):
         word=word.lower().strip()
         if re.match('我需要一點迷因',word):
             imagemap_message = ImagemapSendMessage(
-                base_url='https://i.imgur.com/BEVVwIJ.png',#組圖
+                base_url='https://i.imgur.com/ZoLFq9S.png',#組圖
                 alt_text='this is an imagemap',#預設
                 base_size=BaseSize(height=1040, width=1040),
                 video=Video(
                     original_content_url='https://i.imgur.com/1Y5IgRm.mp4',#John Cena!!!
-                    preview_image_url='https://i.imgur.com/BEVVwIJ.png',#組圖
+                    preview_image_url='https://i.imgur.com/ZoLFq9S.png',#組圖
                     area=ImagemapArea(
                         x=0, y=0, width=1040, height=585
                     ),
